@@ -13,4 +13,7 @@ public interface PersonaRepository extends MongoRepository<Persona, String> {
     Optional<Persona> findPersonaByIDPER(Integer IDPER);
 
     List<Persona> findAllByESTPER(String ESTPER);
+
+    // TODO generar autoincrementables
+    //Persona findTopByOrderByIDPERDesc();
 }

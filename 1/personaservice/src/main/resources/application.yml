@@ -1,25 +1,37 @@
 server:
   port: 8000
+
+ip-docker: 192.168.99.100
+topic:
+  db-events: DatabaseTopic
+
 spring:
   application:
     name: persona_service
 
-  #Mongodb
+  # Mongodb
   data:
     mongodb:
       database: persona
-      host: 192.168.99.100
+      host: ${ip-docker}
       port: 8001
-
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+  # Kafka
+  kafka:
+    producer:
+      bootstrap-servers: ${ip-docker}:32768
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 eureka:
   client:
     service-url:
+      # TODO
       defaultZone: http://${registry.host:192.168.99.100}:${registry.port:8761}/eureka/
 
-#Actuator
+# Actuator
 management:
   endpoints:
     web:

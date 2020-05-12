@@ -20,6 +20,11 @@ public class PersonaRest {
         return personaService.listarPersona();
     }
 
+    @GetMapping("/evento")
+    public void pruebas(){
+        personaService.pruebas();
+    }
+
     @PostMapping
     public void crear(@RequestBody Persona persona) {
         personaService.crearPersona(persona);
