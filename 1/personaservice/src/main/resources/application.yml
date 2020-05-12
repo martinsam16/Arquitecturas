@@ -1,0 +1,32 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: persona_service
+
+  #Mongodb
+  data:
+    mongodb:
+      database: persona
+      host: 192.168.99.100
+      port: 8001
+
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${registry.host:192.168.99.100}:${registry.port:8761}/eureka/
+
+#Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info
+info:
+  app:
+    name: ${spring.application.name}
+    description: "Microservicio de Persona"
+  java_version: ${java.specification.version}
