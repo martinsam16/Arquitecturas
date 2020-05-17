@@ -20,9 +20,14 @@ public class PersonaRest {
         return personaService.listarPersona();
     }
 
-    @GetMapping("/evento")
-    public void pruebas(){
-        personaService.pruebas();
+    @GetMapping("/crear")
+    public void crear(){
+        personaService.crear();
+    }
+
+    @GetMapping("/modificar")
+    public void modificar(){
+        personaService.modificar();
     }
 
     @PostMapping

@@ -9,7 +9,6 @@ import com.martinsaman.personaservice.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,7 +25,7 @@ public class PersonaService {
             case MODIFICAR:
                 databaseProducer.enviarEvento(
                         new DatabaseDto(event,
-                                personaRepository.save(persona),
+                                persona,
                                 null,
                                 DatabaseModel.PERSONA
                         ));
@@ -44,19 +43,19 @@ public class PersonaService {
         }
     }
 
-    /**
-     * Si fuese Listener se agregaría un modo en los métodos: para evitar el circulo vicioso :D
-     * En este caso esta en modo Producer por lo que no es necesario xd
-     */
 
     public void crearPersona(Persona persona) {
-        enviarEvento(DatabaseEvent.CREAR, persona, null);
+        if (!personaRepository.findPersonaByIDPER(persona.getIDPER())
+                .isPresent()) {
+            enviarEvento(DatabaseEvent.CREAR, personaRepository.save(persona), null);
+        }
     }
 
     public void modificarPersona(Persona persona) {
         personaRepository.findPersonaByIDPER(persona.getIDPER())
                 .ifPresent((p) -> {
-                    enviarEvento(DatabaseEvent.MODIFICAR, p, null);
+                    persona.setId(p.getId()); // para que modifique y no registre otro xd
+                    enviarEvento(DatabaseEvent.MODIFICAR, personaRepository.save(persona), null);
                 });
     }
 
@@ -70,7 +69,7 @@ public class PersonaService {
     }
 
     @Deprecated
-    public void pruebas() {
+    public void crear() {
         Persona p = new Persona(
                 2,
                 "Nataly",
@@ -79,12 +78,25 @@ public class PersonaService {
                 "72720459",
                 "A");
         crearPersona(p);
+//        modificarPersona(p);
+//        eliminarPersona(p.getIDPER());
+    }
+
+    @Deprecated
+    public void modificar() {
+        Persona p = new Persona(
+                2,
+                "FFFFFFF",
+                "FFFFFFFF",
+                "FFFFFFF",
+                "72720459",
+                "A");
         modificarPersona(p);
-        eliminarPersona(p.getIDPER());
+//        eliminarPersona(p.getIDPER());
     }
 
     public List<Persona> listarPersona() {
-        return new ArrayList<>(personaRepository.findAllByESTPER("A"));
+        return personaRepository.findAllByESTPER("A");
     }
 
 }

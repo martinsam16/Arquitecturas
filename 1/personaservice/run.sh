@@ -2,7 +2,9 @@
 docker rm -f persona-db
 docker run -d -p 8001:27017 --name persona-db mongo
 
+
 ## microservicio
+mvn clean package
 docker rm -f persona-service
 docker rmi -f $(docker images |grep 'persona-service')
 docker build -t persona-service:0.1 .

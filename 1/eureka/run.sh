@@ -1,3 +1,4 @@
+mvn clean package
 docker rm -f eureka
 docker rmi -f $(docker images |grep 'eureka')
 docker build -t eureka:0.1 .

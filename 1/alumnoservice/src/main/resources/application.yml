@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 8002
 
 ip-docker: 192.168.99.100
 topic:
@@ -7,16 +7,16 @@ topic:
 
 spring:
   application:
-    name: persona_service
+    name: alumno_service
 
-  # Mongodb
-  data:
-    mongodb:
-      database: persona
-      host: ${ip-docker}
-      port: 8001
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  # db
+  datasource:
+    url: jdbc:h2:mem:alumnoservice
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sabor
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
 
   # Kafka
   kafka:
@@ -24,6 +24,14 @@ spring:
       bootstrap-servers: ${ip-docker}:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+    consumer:
+      bootstrap-servers: ${ip-docker}:9092
+      group-id: com.martinsaman
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
 
 eureka:
   client:
@@ -40,5 +48,6 @@ management:
 info:
   app:
     name: ${spring.application.name}
-    description: "Microservicio de Persona"
+    description: "Microservicio de Alumno"
   java_version: ${java.specification.version}
+
