@@ -5,6 +5,8 @@ import com.martinsaman.apigateway.clients.curso_service.curso.CursoDto;
 import com.martinsaman.apigateway.clients.curso_service.usuario_curso.CursoClient;
 import com.martinsaman.apigateway.clients.curso_service.usuario_curso.UsuarioCurso;
 import com.martinsaman.apigateway.clients.curso_service.usuario_curso.UsuarioCursoClient;
+import com.martinsaman.apigateway.clients.email_service.EmailDto;
+import com.martinsaman.apigateway.clients.email_service.EmailProducer;
 import com.martinsaman.apigateway.clients.usuario_service.Usuario;
 import com.martinsaman.apigateway.clients.usuario_service.UsuarioClient;
 import com.martinsaman.apigateway.clients.usuario_service.UsuarioDto;
@@ -26,6 +28,9 @@ public class MainService {
     @Autowired
     private UsuarioClient usuarioClient;
 
+    @Autowired
+    private EmailProducer emailProducer;
+
     public List<Usuario> listarUsuarios() {
         return usuarioClient.listar();
     }
@@ -44,18 +49,23 @@ public class MainService {
 
     public UsuarioCurso comprarCurso(String email, List<Curso> cursosComprar) {
         Usuario usuario = usuarioClient.requestUser(email);
+        EmailDto emailDto = new EmailDto(email);
+
         SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+
+
         if (fmt.format(usuario.getCreatedAt()).equals(fmt.format(new Date()))) {
-//            Enviar mensaje de nuevo
-            System.out.println("Bienvenido :DDDDDDDDDDDDDDDDDDDDD");
+            emailDto.mensajeBienvenida();
+            emailProducer.enviar(emailDto);
         }
+
         UsuarioCurso usuarioCurso = new UsuarioCurso();
         usuarioCurso.set_id(usuario.get_id());
         usuarioCurso.setCursos(cursosComprar);
-        System.out.println(usuarioCurso);
         usuarioCurso = usuarioCursoClient.guardarActualizar(usuarioCurso);
-//        Enviar mensaje de compra
-        System.out.println("Compra exitosa :DDDDDDDDDDDD");
+
+        emailDto.mensajeCompra(cursosComprar);
+        emailProducer.enviar(emailDto);
 
         System.out.println(usuario);
         System.out.println(usuarioCurso);

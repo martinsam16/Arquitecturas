@@ -20,8 +20,6 @@ services:
   email:
     build: ./email-service
     container_name: email-service
-    depends_on:
-      - kafka
 
   user:
     build: ./user-service

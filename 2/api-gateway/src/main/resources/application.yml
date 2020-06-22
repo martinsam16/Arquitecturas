@@ -1,2 +1,12 @@
 server:
   port: 8080
+
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: 23.102.156.137:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+topic:
+  email: email_topic

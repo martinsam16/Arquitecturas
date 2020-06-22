@@ -1,7 +1,7 @@
 FROM python:3.7-alpine
 
-ADD . /email-service
+ADD . /
 
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["python3","./email-service/app.py"]
+ENTRYPOINT ["python3","./app.py"]

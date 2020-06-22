@@ -11,4 +11,5 @@ def listen_kafka():
 
 
 if __name__ == '__main__':
+    print("Inicializado :D.")
     listen_kafka()
