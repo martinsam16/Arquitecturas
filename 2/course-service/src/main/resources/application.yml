@@ -1,0 +1,9 @@
+server:
+  port: 3007
+
+spring:
+  data:
+    mongodb:
+      database: Cursos
+      uri: mongodb+srv://paginas:paginas@paginas-o5dde.mongodb.net/test?retryWrites=true&w=majority
+

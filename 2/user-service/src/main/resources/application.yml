@@ -1,0 +1,8 @@
+server:
+  port: 3005
+
+spring:
+  data:
+    mongodb:
+      database: Usuarios
+      uri: mongodb+srv://paginas:paginas@paginas-o5dde.mongodb.net/test?retryWrites=true&w=majority
