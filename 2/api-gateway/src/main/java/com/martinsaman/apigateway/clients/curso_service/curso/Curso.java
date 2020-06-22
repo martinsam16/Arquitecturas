@@ -1,34 +1,14 @@
-package com.martinsaman.courseservice.curso.model;
-
-import com.martinsaman.courseservice.curso.dto.CursoDto;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.martinsaman.apigateway.clients.curso_service.curso;
 
 import java.util.Date;
 
-@Document
 public class Curso {
-    @Id
     private String _id;
     private String author;
-    @Indexed(unique = true)
     private String name;
     private String image;
     private String description;
-    @CreatedDate
     private Date createdAt;
-
-    public Curso() {
-    }
-
-    public Curso(String author, String name, String image, String description) {
-        this.author = author;
-        this.name = name;
-        this.image = image;
-        this.description = description;
-    }
 
     public String get_id() {
         return _id;
@@ -76,5 +56,17 @@ public class Curso {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Curso{" +
+                "_id='" + _id + '\'' +
+                ", author='" + author + '\'' +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

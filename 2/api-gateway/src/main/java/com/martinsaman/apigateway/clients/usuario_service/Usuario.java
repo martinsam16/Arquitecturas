@@ -1,42 +1,13 @@
-package com.martinsaman.userservice.usuario.model;
-
-import com.martinsaman.userservice.usuario.dto.UsuarioDto;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.martinsaman.apigateway.clients.usuario_service;
 
 import java.util.Date;
 
-@Document
 public class Usuario {
-    @Id
     private String _id;
-    @Indexed(unique = true)
     private String email;
     private String name;
     private Date birthDay;
-    @CreatedDate
     private Date createdAt;
-
-    public Usuario() {
-    }
-
-    public Usuario(String email) {
-        this.email = email;
-    }
-
-    public Usuario(String email, String name, Date birthDay) {
-        this.email = email;
-        this.name = name;
-        this.birthDay = birthDay;
-    }
-
-    public Usuario(UsuarioDto dto) {
-        this.email = dto.getEmail();
-        this.name = dto.getName();
-        this.birthDay = dto.getBirthDay();
-    }
 
     public String get_id() {
         return _id;
@@ -76,5 +47,16 @@ public class Usuario {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "_id='" + _id + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", birthDay=" + birthDay +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

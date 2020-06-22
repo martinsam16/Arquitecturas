@@ -29,6 +29,24 @@ services:
     ports:
       - "3005:3005"
 
+  course:
+    build: ./course-service
+    container_name: course-service
+    ports:
+      - "3007:3007"
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - user
+      - course
+
+
+
+
 
 
   # Base de datos

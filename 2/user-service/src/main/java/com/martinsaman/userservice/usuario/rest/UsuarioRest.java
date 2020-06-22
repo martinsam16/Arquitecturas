@@ -1,23 +1,32 @@
 package com.martinsaman.userservice.usuario.rest;
 
+import com.martinsaman.userservice.usuario.dto.UsuarioDto;
 import com.martinsaman.userservice.usuario.model.Usuario;
 import com.martinsaman.userservice.usuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
-@RestController("/usuario")
+@RestController
+@RequestMapping("/usuario")
 public class UsuarioRest {
 
     @Autowired
     private UsuarioService usuarioService;
 
     @GetMapping
-    public Usuario getUser(@RequestParam("email") String email) {
-        return usuarioService.getUser(email);
+    public List<Usuario> listar() {
+        return usuarioService.listar();
     }
 
     @PostMapping
+    public Usuario guardarUsuario(@RequestBody UsuarioDto dto) {
+        return usuarioService.guardar(dto);
+    }
+
+    @PostMapping("/req")
     public Usuario requestUser(@RequestParam("email") String email) {
         return usuarioService.requestUser(email);
     }
