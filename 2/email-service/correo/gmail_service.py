@@ -13,7 +13,7 @@ class GmailService(MensajeDto):
                       subject=self._subject,
                       contents=self._content)
         self.yag.close()
-        print("mensaje enviado :D")
+        print("mail enviado :D")
 
 
 if __name__ == '__main__':

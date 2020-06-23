@@ -9,7 +9,11 @@ services:
     image: wurstmeister/kafka
     ports:
       - "9092:9092"
+    depends_on:
+      - zookeeper
     environment:
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT:// 23.102.156.137:9092'
+      KAFKA_LISTENERS: 'PLAINTEXT://:9092'
       KAFKA_ADVERTISED_HOST_NAME: 23.102.156.137
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_CREATE_TOPICS: "email_topic:1:1"
@@ -35,7 +39,6 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - zookeeper
       - kafka
       - user
       - course
@@ -44,7 +47,7 @@ services:
     build: ./email-service
     container_name: email-service
     depends_on:
-      - api-gateway
+      - kafka
 
 
 
