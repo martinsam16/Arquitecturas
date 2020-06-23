@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer
 
-from correo.gmail_service import GmailService
+from correo.gmail.gmail_service import GmailService
 
 import json
 
