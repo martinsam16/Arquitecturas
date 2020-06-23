@@ -32,8 +32,6 @@ services:
   email:
     build: ./email-service
     container_name: email-service
-    ports:
-      - "3009:3009"
     depends_on:
       - zookeeper
       - kafka
