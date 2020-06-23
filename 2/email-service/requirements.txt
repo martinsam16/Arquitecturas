@@ -1,2 +1,2 @@
-yagmail[all]
+yagmail
 kafka-python==1.4.7
