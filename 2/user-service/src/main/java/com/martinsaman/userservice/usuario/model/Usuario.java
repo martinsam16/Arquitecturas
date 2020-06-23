@@ -3,7 +3,6 @@ package com.martinsaman.userservice.usuario.model;
 import com.martinsaman.userservice.usuario.dto.UsuarioDto;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -12,7 +11,6 @@ import java.util.Date;
 public class Usuario {
     @Id
     private String _id;
-    @Indexed(unique = true)
     private String email;
     private String name;
     private Date birthDay;

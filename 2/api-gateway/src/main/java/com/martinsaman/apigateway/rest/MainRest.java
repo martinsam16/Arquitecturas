@@ -25,13 +25,13 @@ public class MainRest {
     }
 
     @PostMapping("/curso")
-    public Curso guardarCurso(CursoDto cursoDto) {
+    public Curso guardarCurso(@RequestBody CursoDto cursoDto) {
         return mainService.guardarCurso(cursoDto);
     }
 
     @PostMapping("/curso/comprar")
-    public UsuarioCurso comprarCurso(@RequestBody CompraDto compraDto) {
-        return mainService.comprarCurso(compraDto.getEmail(), compraDto.getCursosComprar());
+    public void comprarCurso(@RequestBody CompraDto compraDto) {
+        mainService.comprarCurso(compraDto.getEmail(), compraDto.getCursosComprar());
     }
 
     @GetMapping("/usuario")

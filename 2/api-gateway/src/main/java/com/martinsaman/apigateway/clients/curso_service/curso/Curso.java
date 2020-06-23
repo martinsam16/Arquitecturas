@@ -1,6 +1,7 @@
 package com.martinsaman.apigateway.clients.curso_service.curso;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Curso {
     private String _id;
@@ -8,7 +9,7 @@ public class Curso {
     private String name;
     private String image;
     private String description;
-    private Date createdAt;
+    private Float price;
 
     public String get_id() {
         return _id;
@@ -50,12 +51,13 @@ public class Curso {
         this.description = description;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+
+    public Float getPrice() {
+        return price;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setPrice(Float price) {
+        this.price = price;
     }
 
     @Override
@@ -66,7 +68,20 @@ public class Curso {
                 ", name='" + name + '\'' +
                 ", image='" + image + '\'' +
                 ", description='" + description + '\'' +
-                ", createdAt=" + createdAt +
+                ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Curso curso = (Curso) o;
+        return _id.equals(curso._id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(_id);
     }
 }

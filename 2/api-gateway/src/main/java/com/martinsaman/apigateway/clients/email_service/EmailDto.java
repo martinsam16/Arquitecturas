@@ -16,14 +16,17 @@ public class EmailDto {
 
     public void mensajeBienvenida() {
         this.subject = "Bienvenido a la Biblio";
-        this.content = "Un wen floro :D";
+        this.content = "Hola, te has suscrito recientemente; asi que te damos la bienvenida a nuestra plataforma :D \n" +
+                "https://i.pinimg.com/originals/74/64/2d/74642d8702d9643428b138e49b202b49.jpg";
     }
 
-    public void mensajeCompra(List<Curso> cursosComprados) {
-        this.subject = "Compra realizada con exito :D";
-        this.content = "Compra realizada: " + cursosComprados.stream()
-                .map(Curso::getName)
-                .collect(Collectors.joining(", "));
+    public void mensajeCursosInfo(List<Curso> cursosComprados) {
+        this.subject = "Cursos comprados :D";
+        this.content = "Información: \n \n" + cursosComprados.stream()
+                .map((curso) -> "Nombre: " + curso.getName() + "\n" +
+                                "Autor: " + curso.getAuthor() + "\n" +
+                                "Descripción: " + curso.getDescription() + "\n")
+                .collect(Collectors.joining("\n ----- \n "));
     }
 
     public String getEmail() {

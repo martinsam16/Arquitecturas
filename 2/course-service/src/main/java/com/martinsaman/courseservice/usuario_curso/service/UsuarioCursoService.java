@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,23 +16,22 @@ public class UsuarioCursoService {
     @Autowired
     private UsuarioCursoRepository usuarioCursoRepository;
 
-    public List<UsuarioCurso> listar(){
+    public List<UsuarioCurso> listar() {
         return usuarioCursoRepository.findAll();
     }
 
     public UsuarioCurso guardarActualizar(UsuarioCurso usuarioCurso) {
-        Optional<UsuarioCurso> encontradoOpt = usuarioCursoRepository.findById(usuarioCurso.get_id());
-        if (encontradoOpt.isPresent()) {
-            UsuarioCurso encontrado = encontradoOpt.get();
-            List<Curso> listaCursos = Stream
-                    .concat(encontrado.getCursos().stream(),
-                            usuarioCurso.getCursos().stream())
-                    .collect(Collectors.toList());
-            encontrado.setCursos(listaCursos);
-            return usuarioCursoRepository.save(encontrado);
-        } else {
-            return usuarioCursoRepository.save(usuarioCurso);
-        }
+        return usuarioCursoRepository.save(
+                usuarioCursoRepository.findById(usuarioCurso.get_id())
+                        .map(encontrado -> {
+                            List<Curso> listaCursos = Stream
+                                    .concat(encontrado.getCursos().stream(), usuarioCurso.getCursos().stream())
+                                    .collect(Collectors.toList());
+                            encontrado.setCursos(listaCursos);
+                            return encontrado;
+                        })
+                        .orElse(usuarioCurso)
+        );
     }
 
 }

@@ -3,6 +3,7 @@ package com.martinsaman.courseservice.usuario_curso.model;
 import com.martinsaman.courseservice.curso.model.Curso;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,6 +20,8 @@ public class UsuarioCurso {
 
     @CreatedDate
     private Date createdAt;
+    @LastModifiedDate
+    private Date lastModified;
 
     public UsuarioCurso() {
     }
@@ -54,5 +57,13 @@ public class UsuarioCurso {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
     }
 }

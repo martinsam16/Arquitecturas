@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,29 +52,31 @@ public class MainService {
         return cursoClient.guardar(cursoDto);
     }
 
-    public UsuarioCurso comprarCurso(String email, List<Curso> cursosComprar) {
+    public void comprarCurso(String email, List<Curso> cursosComprar) {
         Usuario usuario = usuarioClient.requestUser(email);
         EmailDto emailDto = new EmailDto(email);
 
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-
-
-        if (fmt.format(usuario.getCreatedAt()).equals(fmt.format(new Date()))) {
-            emailDto.mensajeBienvenida();
-            emailProducer.enviar(emailDto);
-        }
 
         UsuarioCurso usuarioCurso = new UsuarioCurso();
         usuarioCurso.set_id(usuario.get_id());
         usuarioCurso.setCursos(cursosComprar);
         usuarioCurso = usuarioCursoClient.guardarActualizar(usuarioCurso);
 
-        emailDto.mensajeCompra(cursosComprar);
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+        if (fmt.format(usuario.getCreatedAt()).equals(fmt.format(new Date()))) {
+            emailDto.mensajeBienvenida();
+            emailProducer.enviar(emailDto);
+        }
+
+        List<Curso> lista = new ArrayList<>();
+        for (Curso curso : cursosComprar) {
+            lista.add(usuarioCurso.getCursos().get(usuarioCurso.getCursos().indexOf(curso)));
+        }
+
+
+        emailDto.mensajeCursosInfo(lista);
         emailProducer.enviar(emailDto);
 
-        System.out.println(usuario);
-        System.out.println(usuarioCurso);
-        return usuarioCurso;
     }
 
 }

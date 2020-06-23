@@ -3,7 +3,7 @@ package com.martinsaman.courseservice.curso.model;
 import com.martinsaman.courseservice.curso.dto.CursoDto;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -13,21 +13,24 @@ public class Curso {
     @Id
     private String _id;
     private String author;
-    @Indexed(unique = true)
     private String name;
     private String image;
     private String description;
+    private Float price;
     @CreatedDate
     private Date createdAt;
+    @LastModifiedDate
+    private Date lastModified;
 
     public Curso() {
     }
 
-    public Curso(String author, String name, String image, String description) {
-        this.author = author;
-        this.name = name;
-        this.image = image;
-        this.description = description;
+    public Curso(CursoDto dto) {
+        this.author = dto.getAuthor();
+        this.name = dto.getName();
+        this.image = dto.getImage();
+        this.description = dto.getDescription();
+        this.price = dto.getPrice();
     }
 
     public String get_id() {
@@ -76,5 +79,35 @@ public class Curso {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Curso{" +
+                "_id='" + _id + '\'' +
+                ", author='" + author + '\'' +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", createdAt=" + createdAt +
+                ", lastModified=" + lastModified +
+                '}';
     }
 }

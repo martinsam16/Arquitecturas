@@ -5,16 +5,8 @@ public class CursoDto {
     private String name;
     private String image;
     private String description;
+    private Float price;
 
-    public CursoDto() {
-    }
-
-    public CursoDto(String author, String name, String image, String description) {
-        this.author = author;
-        this.name = name;
-        this.image = image;
-        this.description = description;
-    }
 
     public String getAuthor() {
         return author;
@@ -46,5 +38,24 @@ public class CursoDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "CursoDto{" +
+                "author='" + author + '\'' +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

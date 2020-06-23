@@ -19,7 +19,15 @@ public class UsuarioService {
     }
 
     public Usuario guardar(UsuarioDto dto) {
-        return usuarioRepository.save(new Usuario(dto));
+        return usuarioRepository.save(
+                usuarioRepository.findByEmail(dto.getEmail())
+                        .map(usuario -> {
+                            usuario.setName(dto.getName());
+                            usuario.setBirthDay(dto.getBirthDay());
+                            return usuario;
+                        })
+                        .orElseGet(() -> new Usuario(dto))
+        );
     }
 
     public Usuario requestUser(String email) {

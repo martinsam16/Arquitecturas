@@ -15,10 +15,16 @@ public class CursoService {
     private CursoRepository cursoRepository;
 
     public Curso guardarCurso(CursoDto cursoDto) {
-        return cursoRepository.save(new Curso(cursoDto.getAuthor(),
-                cursoDto.getName(),
-                cursoDto.getImage(),
-                cursoDto.getDescription()));
+        return cursoRepository.save(
+                cursoRepository.findByName(cursoDto.getName())
+                .map(curso->{
+                    curso.setDescription(cursoDto.getDescription());
+                    curso.setImage(cursoDto.getImage());
+                    curso.setPrice(cursoDto.getPrice());
+                    curso.setAuthor(cursoDto.getAuthor());
+                    return curso;
+                }).orElse(new Curso(cursoDto))
+        );
     }
 
     public List<Curso> listarCursos(){
