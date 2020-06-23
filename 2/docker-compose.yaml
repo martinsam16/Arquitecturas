@@ -17,10 +17,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   # Microservicios
-  email:
-    build: ./email-service
-    container_name: email-service
-
   user:
     build: ./user-service
     container_name: user-service
@@ -33,16 +29,25 @@ services:
     ports:
       - "3007:3007"
 
+  email:
+    build: ./email-service
+    container_name: email-service
+    ports:
+      - "3009:3009"
+    depends_on:
+      - zookeeper
+      - kafka
+
   api-gateway:
     build: ./api-gateway
     container_name: api-gateway
     ports:
       - "8080:8080"
     depends_on:
+      - zookeeper
+      - kafka
       - user
       - course
-
-
 
 
 

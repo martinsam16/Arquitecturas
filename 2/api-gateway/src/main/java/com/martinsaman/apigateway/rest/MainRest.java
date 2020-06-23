@@ -39,6 +39,11 @@ public class MainRest {
         return mainService.listarUsuarios();
     }
 
+    @GetMapping("/usuario_curso")
+    public List<UsuarioCurso> listarUsuarioCurso() {
+        return mainService.listarUsuarioCurso();
+    }
+
     @PostMapping("/usuario")
     public Usuario guardarUsuario(@RequestBody UsuarioDto dto) {
         return mainService.guardarUsuario(dto);

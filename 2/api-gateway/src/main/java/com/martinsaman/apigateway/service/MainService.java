@@ -31,6 +31,10 @@ public class MainService {
     @Autowired
     private EmailProducer emailProducer;
 
+    public List<UsuarioCurso> listarUsuarioCurso() {
+        return usuarioCursoClient.listar();
+    }
+
     public List<Usuario> listarUsuarios() {
         return usuarioClient.listar();
     }
