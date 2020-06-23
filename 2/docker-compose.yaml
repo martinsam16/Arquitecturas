@@ -29,13 +29,6 @@ services:
     ports:
       - "3007:3007"
 
-  email:
-    build: ./email-service
-    container_name: email-service
-    depends_on:
-      - zookeeper
-      - kafka
-
   api-gateway:
     build: ./api-gateway
     container_name: api-gateway
@@ -47,6 +40,11 @@ services:
       - user
       - course
 
+  email:
+    build: ./email-service
+    container_name: email-service
+    depends_on:
+      - api-gateway
 
 
 
