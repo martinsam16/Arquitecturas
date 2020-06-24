@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="row" style="text-align: center;">
+      <div class="col">
+        <button class="opciones" (click)="ver('R')"> Registrar Curso </button>
+      </div>
+      <div class="col-5">
+        <button class="opciones" (click)="ver('L')"> Listar Cursos </button>
+      </div>
+      <div class="col">
+        <button class="opciones" (click)="ver('A')"> Asignar cursos </button>
+      </div>
+  </div>
+
+  <!-- Registro de libro o curso -->
+  <div *ngIf="show1">
+    <br>
+    <h3 style="color: #fe4c50;"> Datos del curso </h3>
+    <hr>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit(contactForm);" #contactForm="ngForm">
+        <div class="form-group">
+          <label for="name">Autor</label>
+          <input type="text" [(ngModel)]="curso.author" name="author" class="form-control" placeholder="Nombre del autor">
+        </div>
+
+        <div class="form-group">
+          <label for="name">Curso</label>
+          <input type="text" [(ngModel)]="curso.name" name="name" class="form-control" placeholder="Ingrese el nombre del curso">
+        </div>
+
+        <div class="form-group">
+          <label for="name">Descripción</label>
+          <input type="text" [(ngModel)]="curso.description" name="description" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="name">Imagen</label>
+          <input type="text" [(ngModel)]="curso.image" name="image" placeholder="Link" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="name">Precio</label>
+          <input type="number" [(ngModel)]="curso.price" name="price" placeholder="Ingres el precio" class="form-control">
+        </div>
+
+        <button  [disabled]="!contactForm.form.valid">Enviar</button>
+      </form>
+    </div>
+  </div>
+  <!-- Fin de registro de L o C-->
+
+  <!-- Lista de libros -->
+  <div *ngIf="show2">
+    <br>
+    <h3 style="color: #fe4c50;"> Cursos </h3>
+    <hr><br>
+    <div  class="container">
+      <div class="row">
+        
+        <div class="col-sm-6" *ngFor="let curs of cursos">
+          
+          <div class="card">
+            <div class="row">
+              <div class="col-sm-4" style="text-align: center;">
+                <img src="curs.image" class="card-img-top" width="50px">
+              </div>
+              <div class="card-body col-sm-8">
+                <h5 class="card-title" style="font-weight: bolder;">{{ curs.name }}</h5>
+                <p class="card-text" style="color: #51545f;">Autor: {{ curs.author }}</p>
+                <p class="card-text" style="color: #51545f; font-size: 13px;">Precio: {{ curs.price }}</p>
+              </div>
+            </div>            
+          </div>          
+          <br>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- Fin de lista -->
+
+  <!-- Asignación -->
+  <div *ngIf="show3">
+    <br>
+    <h3 style="color: #fe4c50;"> Asignación de Libro </h3>
+    <hr>
+
+    <form (ngSubmit)="onSubmit2(regtForm);" #regtForm="ngForm">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Correo</label>
+        <input type="email" [(ngModel)]="compra.email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      </div>
+
+      <div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+
+      <button> Enviar </button>
+    </form>
+
+  </div>
+  <!-- Fin de asignación -->
+</div>    

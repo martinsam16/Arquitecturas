@@ -1,0 +1,26 @@
+<div class="table-responsive-lg">
+    <h2 style="color: #fe4c50;">Cursos adquiridos por Usuario</h2>
+    <br>
+    
+    <table class="table table-hover">
+        <caption>Lista de usuarios</caption>
+        <thead>
+            <tr>
+                <th scope="col" width="50px">#</th>
+                <th scope="col" width="190px">Usuario</th>
+                <th scope="col" width="170px">Curso</th>
+                <th scope="col" width="130px">Precio ($)</th>
+                <th scope="col">Descripción</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let user of usuarios, let i = index">		
+            <tr *ngFor="let curso of user.usuarioCurso.cursos">
+                <th scope="row" width="50px"> {{ i + 1 }} </th>
+                <td> {{ user.usuario.name }} </td>
+                <td> {{ curso.name }} </td>
+	        <td> {{ curso.price }}</td>
+        	<td> {{ curso.description }} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
