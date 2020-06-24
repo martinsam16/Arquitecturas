@@ -19,10 +19,16 @@ export class Curso {
 
 }
 
+export class ID {
+
+    '_id': string;
+
+}
+
 export class Compra {
 
     'email': string;
-    'cursosComprar': Curso[];
+    'cursosComprar': ID[];
 
 }
 

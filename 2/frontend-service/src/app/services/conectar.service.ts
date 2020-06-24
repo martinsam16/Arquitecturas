@@ -30,6 +30,7 @@ export class ConectarService {
 
   // Listar compras por usuario
   public saveCompra(compra: Compra) {
+    console.log(compra);
     return this.http.post<Compra[]>(`${this.api}/curso/comprar`, compra);
   }
 

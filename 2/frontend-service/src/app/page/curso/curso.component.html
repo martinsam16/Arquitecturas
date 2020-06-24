@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row" style="text-align: center;">
-      <div class="col">
+      <div class="col" style="position: static;">
         <button class="opciones" (click)="ver('R')"> Registrar Curso </button>
       </div>
-      <div class="col-5">
+      <div class="col-5" style="position: static;">
         <button class="opciones" (click)="ver('L')"> Listar Cursos </button>
       </div>
-      <div class="col">
+      <div class="col" style="position: static;">
         <button class="opciones" (click)="ver('A')"> Asignar cursos </button>
       </div>
   </div>
@@ -16,6 +16,10 @@
     <br>
     <h3 style="color: #fe4c50;"> Datos del curso </h3>
     <hr>
+    <div class="alert alert-warning alert-danger" *ngIf="alert2">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Error!</strong> En estos momentos mo podemos registrar su curso.
+    </div>
     <div class="card-body">
       <form (ngSubmit)="onSubmit(contactForm);" #contactForm="ngForm">
         <div class="form-group">
@@ -57,14 +61,14 @@
     <div  class="container">
       <div class="row">
         
-        <div class="col-sm-6" *ngFor="let curs of cursos">
+        <div class="col-sm-6" *ngFor="let curs of cursos" style="position: static;">
           
-          <div class="card">
-            <div class="row">
-              <div class="col-sm-4" style="text-align: center;">
-                <img src="curs.image" class="card-img-top" width="50px">
+          <div class="card" style="position: static;">
+            <div class="row" style="position: static;">
+              <div class="col-sm-4" style="text-align: center; position: static;">
+                <img [src]="curs.image" class="card-img-top" width="50px">
               </div>
-              <div class="card-body col-sm-8">
+              <div class="card-body col-sm-8" style="position: static;">
                 <h5 class="card-title" style="font-weight: bolder;">{{ curs.name }}</h5>
                 <p class="card-text" style="color: #51545f;">Autor: {{ curs.author }}</p>
                 <p class="card-text" style="color: #51545f; font-size: 13px;">Precio: {{ curs.price }}</p>
@@ -89,13 +93,13 @@
     <form (ngSubmit)="onSubmit2(regtForm);" #regtForm="ngForm">
       <div class="form-group">
         <label for="exampleFormControlInput1">Correo</label>
-        <input type="email" name="email" [(ngModel)]="compra.email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        <input type="email" name="email" [(ngModel)]="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
       </div>
 
       <div class="form-group">
-        <label for="exampleFormControlSelect1">Example select</label>
-        <select name="cursosComprar" class="form-control" id="exampleFormControlSelect1">
-          <option *ngFor="let cur of cursos" value="cur._id"> {{cur.name}} </option>
+        <label for="exampleFormControlSelect1">Cursos</label>
+        <select multiple="multiple" class="form-control" name="curso" id="exampleFormControlSelect1">
+          <option *ngFor="let cur of cursos" (click)="agrega(cur._id)"> {{cur.name}} </option>
         </select>        
       </div>
 

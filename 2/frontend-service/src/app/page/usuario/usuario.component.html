@@ -6,17 +6,17 @@
         <caption>Lista de usuarios</caption>
         <thead>
             <tr>
-                <th scope="col" width="50px">#</th>
-                <th scope="col" width="190px">Usuario</th>
-                <th scope="col" width="170px">Curso</th>
-                <th scope="col" width="130px">Precio ($)</th>
+                <th scope="col" width="195px">Usuario</th>
+                <th scol="col" width="240px">Correo</th>
+                <th scope="col" width="150px">Curso</th>
+                <th scope="col" width="100px">Precio ($)</th>
                 <th scope="col">Descripción</th>
             </tr>
         </thead>
-        <tbody *ngFor="let user of usuarios, let i = index">		
+        <tbody *ngFor="let user of usuarios">		
             <tr *ngFor="let curso of user.usuarioCurso.cursos">
-                <th scope="row" width="50px"> {{ i + 1 }} </th>
                 <td> {{ user.usuario.name }} </td>
+                <td> {{ user.usuario.email }} </td>
                 <td> {{ curso.name }} </td>
 	            <td> {{ curso.price }}</td>
         	    <td> {{ curso.description }} </td>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConectarService } from '../../services/conectar.service';
 import { Curso, Compra } from '../../model/usuario';
 import { NgForm } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-curso',
@@ -13,10 +14,13 @@ export class CursoComponent implements OnInit {
   // tslint:disable-next-line: new-parens
   curso = new Curso();
   cursos: Curso[];
-  compra = new Compra();
+  email: string;
+  libro = {};
+  libros = [];
   show1 = true;
   show2 = false;
   show3 = false;
+  alert2 = false;
 
   constructor(private servicio: ConectarService) { }
 
@@ -35,26 +39,46 @@ export class CursoComponent implements OnInit {
 
   enviar(body: Curso, f: NgForm) {
     this.servicio.saveCurso(body).subscribe(data => {
-      this.listar();
+      this.listar(); }, (error: any) => {
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 400) {
+          this.alert2 = false;
+        }
+        if (error.status === 500) {
+          this.alert2 = false;
+        }
+      }
     });
     f.reset();
     this.show1 = false;
     this.show2 = true;
   }
 
-  agregar(curso: any) {
-    console.log(curso);
+  agrega(curso: string) {
+    this.libros.push(this.libro = {_id: curso});
+    console.log(this.libros);
   }
 
   onSubmit2(f: NgForm) {
-    console.log(f);
-    this.save(this.compra, f);
+    const compra = {
+      email: this.email,
+      cursosComprar: this.libros
+    };
+    this.save(compra, f);
   }
 
-  save(comp: Compra, f: NgForm) {
+  save(comp: any, f: NgForm) {
     this.servicio.saveCompra(comp).subscribe(data => {
-      console.log('OK');
-    });
+        console.log('ok'); }, (error: any) => {
+        if (error instanceof HttpErrorResponse) {
+          if (error.status === 400) {
+            this.alert2 = false;
+          }
+          if (error.status === 500) {
+            this.alert2 = false;
+          }
+        }
+      });
     f.reset();
   }
 
