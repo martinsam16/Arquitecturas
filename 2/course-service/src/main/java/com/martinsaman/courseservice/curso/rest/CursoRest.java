@@ -17,13 +17,18 @@ public class CursoRest {
     private CursoService cursoService;
 
     @GetMapping
-    public List<Curso> listar(){
+    public List<Curso> listar() {
         return cursoService.listarCursos();
     }
 
     @PostMapping
     public Curso guardar(@RequestBody CursoDto cursoDto) {
         return cursoService.guardarCurso(cursoDto);
+    }
+
+    @GetMapping("/uno")
+    public Curso buscarPorId(@RequestParam("id") String id) {
+        return cursoService.buscarPorId(id);
     }
 
     @DeleteMapping

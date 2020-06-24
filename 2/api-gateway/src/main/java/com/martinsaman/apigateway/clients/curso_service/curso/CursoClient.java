@@ -17,4 +17,7 @@ public interface CursoClient {
 
     @DeleteMapping
     void eliminar(@RequestParam("id") String id);
+
+    @GetMapping("/uno")
+    Curso buscarPorId(@RequestParam("id") String id);
 }

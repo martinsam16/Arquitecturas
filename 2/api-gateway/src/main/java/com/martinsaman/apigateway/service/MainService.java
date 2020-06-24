@@ -1,8 +1,8 @@
 package com.martinsaman.apigateway.service;
 
 import com.martinsaman.apigateway.clients.curso_service.curso.Curso;
+import com.martinsaman.apigateway.clients.curso_service.curso.CursoClient;
 import com.martinsaman.apigateway.clients.curso_service.curso.CursoDto;
-import com.martinsaman.apigateway.clients.curso_service.usuario_curso.CursoClient;
 import com.martinsaman.apigateway.clients.curso_service.usuario_curso.UsuarioCurso;
 import com.martinsaman.apigateway.clients.curso_service.usuario_curso.UsuarioCursoClient;
 import com.martinsaman.apigateway.clients.curso_service.usuario_curso.UsuarioCursoDto;
@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -66,30 +65,31 @@ public class MainService {
     }
 
     public void comprarCurso(String email, List<Curso> cursosComprar) {
-        Usuario usuario = usuarioClient.requestUser(email);
-        EmailDto emailDto = new EmailDto(email);
+        try {
 
 
-        UsuarioCurso usuarioCurso = new UsuarioCurso();
-        usuarioCurso.set_id(usuario.get_id());
-        usuarioCurso.setCursos(cursosComprar);
-        usuarioCurso = usuarioCursoClient.guardarActualizar(usuarioCurso);
+            Usuario usuario = usuarioClient.requestUser(email);
+            EmailDto emailDto = new EmailDto(email);
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+            if (fmt.format(usuario.getCreatedAt()).equals(fmt.format(new Date()))) {
+                emailDto.mensajeBienvenida();
+                emailProducer.enviar(emailDto);
+            }
 
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-        if (fmt.format(usuario.getCreatedAt()).equals(fmt.format(new Date()))) {
-            emailDto.mensajeBienvenida();
+            cursosComprar = cursosComprar.stream()
+                    .map((curso) -> cursoClient.buscarPorId(curso.get_id())).collect(Collectors.toList());
+
+            UsuarioCurso usuarioCurso = new UsuarioCurso();
+            usuarioCurso.set_id(usuario.get_id());
+            usuarioCurso.setCursos(cursosComprar);
+            usuarioCursoClient.guardarActualizar(usuarioCurso);
+
+
+            emailDto.mensajeCursosInfo(cursosComprar);
             emailProducer.enviar(emailDto);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        List<Curso> lista = new ArrayList<>();
-        for (Curso curso : cursosComprar) {
-            lista.add(usuarioCurso.getCursos().get(usuarioCurso.getCursos().indexOf(curso)));
-        }
-
-
-        emailDto.mensajeCursosInfo(lista);
-        emailProducer.enviar(emailDto);
-
     }
 
 }

@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(url = "23.102.156.137:3005/usuario", name = "d")
-//@FeignClient(url = "localhost:3005/usuario", name = "d")
+@FeignClient(url = "23.102.156.137:3005/usuario", name = "c")
+//@FeignClient(url = "localhost:3005/usuario", name = "c")
 public interface UsuarioClient {
 
     @GetMapping
