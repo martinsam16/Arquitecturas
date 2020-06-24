@@ -39,10 +39,15 @@ services:
     ports:
       - "8080:8080"
 
+  frontend-service:
+    build: ./frontend-service
+    container_name: frontend-service
+    ports:
+      - "80:80"
+      
   #email:
   #  build: ./email-service
   #  container_name: email-service
-
   # Base de datos está en cloud :D
   #mongo-users:
   #  container_name: mongo-users
