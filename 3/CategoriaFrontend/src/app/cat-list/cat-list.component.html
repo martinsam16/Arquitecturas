@@ -1,0 +1,24 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" style="width: 30px;">#</th>
+            <th scope="col">Categoria</th>
+            <th scope="col" style="width: 50px;">Estado</th>
+            <th scope="col" style="width: 100px; text-align: center;">DELETE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ct of catg">
+            <td>{{ ct.idcat }}</td>
+            <td>{{ ct.nomcat }}</td>
+            <td>{{ ct.estcat }}</td>
+            <td>
+              <button (click)="delete(ct.idcat)">D</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
