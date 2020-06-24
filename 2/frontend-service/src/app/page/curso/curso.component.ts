@@ -42,7 +42,12 @@ export class CursoComponent implements OnInit {
     this.show2 = true;
   }
 
+  agregar(curso: any) {
+    console.log(curso);
+  }
+
   onSubmit2(f: NgForm) {
+    console.log(f);
     this.save(this.compra, f);
   }
 
@@ -50,6 +55,7 @@ export class CursoComponent implements OnInit {
     this.servicio.saveCompra(comp).subscribe(data => {
       console.log('OK');
     });
+    f.reset();
   }
 
   ver(tipo: string) {
@@ -68,6 +74,7 @@ export class CursoComponent implements OnInit {
       this.show3 = true;
       this.show2 = false;
       this.show1 = false;
+      this.listar();
     }
   }
 

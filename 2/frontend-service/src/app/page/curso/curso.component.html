@@ -89,19 +89,15 @@
     <form (ngSubmit)="onSubmit2(regtForm);" #regtForm="ngForm">
       <div class="form-group">
         <label for="exampleFormControlInput1">Correo</label>
-        <input type="email" [(ngModel)]="compra.email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        <input type="email" name="email" [(ngModel)]="compra.email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
       </div>
 
       <div class="form-group">
-    <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
+        <label for="exampleFormControlSelect1">Example select</label>
+        <select name="cursosComprar" class="form-control" id="exampleFormControlSelect1">
+          <option *ngFor="let cur of cursos" value="cur._id"> {{cur.name}} </option>
+        </select>        
+      </div>
 
       <button> Enviar </button>
     </form>
