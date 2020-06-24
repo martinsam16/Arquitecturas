@@ -27,6 +27,10 @@ public class CursoService {
         );
     }
 
+    public Curso buscarPorId(String id){
+        return cursoRepository.findById(id).orElse(null);
+    }
+
     public List<Curso> listarCursos(){
         return cursoRepository.findAll();
     }

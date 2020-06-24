@@ -24,8 +24,10 @@ public class EmailDto {
         this.subject = "Cursos comprados :D";
         this.content = "Información: \n \n" + cursosComprados.stream()
                 .map((curso) -> "Nombre: " + curso.getName() + "\n" +
-                                "Autor: " + curso.getAuthor() + "\n" +
-                                "Descripción: " + curso.getDescription() + "\n")
+                        "Autor: " + curso.getAuthor() + "\n" +
+                        "Descripción: " + curso.getDescription() + "\n" +
+                        "Precio: " + curso.getPrice() + "$ \n"
+                )
                 .collect(Collectors.joining("\n ----- \n "));
     }
 

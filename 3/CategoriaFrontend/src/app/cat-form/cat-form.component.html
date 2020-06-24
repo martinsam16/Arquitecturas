@@ -1,0 +1,18 @@
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #catForm="ngForm">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" [(ngModel)]="catg.nomcat" 
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="Ingrese el nombre"
+            required #name="ngModel">
+        </div>
+        <div [hidden]="!name.pristine" class="alert alert-danger">Nombre requerido</div>        
+        <button type="submit" [disabled]="!catForm.form.valid" 
+          class="btn btn-info">Save</button>
+      </form>
+    </div>
+  </div>

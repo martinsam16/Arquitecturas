@@ -1,0 +1,34 @@
+server:
+  port: 3000
+
+spring:
+  application:
+    name: kafka_producer
+
+  kafka:
+    producer:
+      bootstrap-servers: 34.68.95.248:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      #value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+topic:
+  name: DatabaseTopic
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${registry.host:localhost}:${registry.port:8000}/eureka/
+
+#Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info
+info:
+  app:
+    name: ${spring.application.name}
+    description: "Microservicio de producer para kafka"
+  java_version: ${java.specification.version}
+
+
