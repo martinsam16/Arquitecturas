@@ -30,6 +30,10 @@ public class UsuarioService {
         );
     }
 
+    public Usuario obtenerUsuarioId(String id) {
+        return usuarioRepository.findById(id).orElse(null);
+    }
+
     public Usuario requestUser(String email) {
         return usuarioRepository.findByEmail(email)
                 .orElseGet(() -> usuarioRepository.save(new Usuario(email)));

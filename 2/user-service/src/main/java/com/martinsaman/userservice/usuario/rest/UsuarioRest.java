@@ -26,6 +26,11 @@ public class UsuarioRest {
         return usuarioService.guardar(dto);
     }
 
+    @GetMapping("/id")
+    public Usuario obtenerUsuarioId(@RequestParam("id") String id) {
+        return usuarioService.obtenerUsuarioId(id);
+    }
+
     @PostMapping("/req")
     public Usuario requestUser(@RequestParam("email") String email) {
         return usuarioService.requestUser(email);

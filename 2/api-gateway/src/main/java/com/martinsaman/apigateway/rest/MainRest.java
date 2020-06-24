@@ -3,6 +3,7 @@ package com.martinsaman.apigateway.rest;
 import com.martinsaman.apigateway.clients.curso_service.curso.Curso;
 import com.martinsaman.apigateway.clients.curso_service.curso.CursoDto;
 import com.martinsaman.apigateway.clients.curso_service.usuario_curso.UsuarioCurso;
+import com.martinsaman.apigateway.clients.curso_service.usuario_curso.UsuarioCursoDto;
 import com.martinsaman.apigateway.clients.usuario_service.Usuario;
 import com.martinsaman.apigateway.clients.usuario_service.UsuarioDto;
 import com.martinsaman.apigateway.service.MainService;
@@ -40,7 +41,7 @@ public class MainRest {
     }
 
     @GetMapping("/usuario_curso")
-    public List<UsuarioCurso> listarUsuarioCurso() {
+    public List<UsuarioCursoDto> listarUsuarioCurso() {
         return mainService.listarUsuarioCurso();
     }
 

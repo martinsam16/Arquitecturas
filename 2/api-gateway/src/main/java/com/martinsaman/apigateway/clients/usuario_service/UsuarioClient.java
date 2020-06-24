@@ -15,6 +15,9 @@ public interface UsuarioClient {
     @PostMapping
     Usuario guardarUsuario(@RequestBody UsuarioDto dto);
 
+    @GetMapping("/id")
+    Usuario obtenerUsuarioId(@RequestParam("id") String id);
+
     @PostMapping("/req")
     Usuario requestUser(@RequestParam("email") String email);
 

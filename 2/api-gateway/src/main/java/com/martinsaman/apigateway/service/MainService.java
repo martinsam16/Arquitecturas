@@ -5,6 +5,7 @@ import com.martinsaman.apigateway.clients.curso_service.curso.CursoDto;
 import com.martinsaman.apigateway.clients.curso_service.usuario_curso.CursoClient;
 import com.martinsaman.apigateway.clients.curso_service.usuario_curso.UsuarioCurso;
 import com.martinsaman.apigateway.clients.curso_service.usuario_curso.UsuarioCursoClient;
+import com.martinsaman.apigateway.clients.curso_service.usuario_curso.UsuarioCursoDto;
 import com.martinsaman.apigateway.clients.email_service.EmailDto;
 import com.martinsaman.apigateway.clients.email_service.EmailProducer;
 import com.martinsaman.apigateway.clients.usuario_service.Usuario;
@@ -17,6 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MainService {
@@ -32,8 +35,18 @@ public class MainService {
     @Autowired
     private EmailProducer emailProducer;
 
-    public List<UsuarioCurso> listarUsuarioCurso() {
-        return usuarioCursoClient.listar();
+    public List<UsuarioCursoDto> listarUsuarioCurso() {
+        return usuarioCursoClient.listar()
+                .stream()
+                .map((uc) -> {
+                    Optional<Usuario> usuario = Optional.empty();
+                    try {
+                        usuario = Optional.ofNullable(usuarioClient.obtenerUsuarioId(uc.get_id()));
+                    } catch (Exception ignored) {
+                    }
+                    return new UsuarioCursoDto(uc, usuario.orElse(null));
+                })
+                .collect(Collectors.toList());
     }
 
     public List<Usuario> listarUsuarios() {
