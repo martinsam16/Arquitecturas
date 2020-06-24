@@ -1,0 +1,33 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: producto_inventario
+
+  #Mongodb
+  data:
+    mongodb:
+      database: producto_inventario
+      host: localhost
+      port: 27017
+
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${registry.host:localhost}:${registry.port:8000}/eureka/
+
+#Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info
+info:
+  app:
+    name: ${spring.application.name}
+    description: "Microservicio de inventario de productos"
+  java_version: ${java.specification.version}

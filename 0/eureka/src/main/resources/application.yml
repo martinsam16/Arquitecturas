@@ -1,0 +1,13 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: eureka_server
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: true            #Para que ribbon pueda contactarse con los microservicios
+
+
