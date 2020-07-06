@@ -8,7 +8,7 @@ import json
 class ConsumerService:
     def __init__(self):
         self._consumer = KafkaConsumer('email_topic',
-                                       bootstrap_servers='23.102.156.137:9092',
+                                       bootstrap_servers='35.194.18.10:9092',
                                        group_id='group_email',
                                        enable_auto_commit=False,
                                        api_version=(0, 10))
