@@ -1,24 +1,25 @@
 {
-    "access_token": "ya29.a0AfH6SMBVXbu44wx0-K5M2hOUdLnquo4L2DWXBfkPVtHDGij_tgGSzZm9WF-rob5yd5FuT-rT3e9DY8RY1fJMDrknX1riOKet4Ok0hjlB9AknMenG0sWOQohS2Rvr9FINoSYz0JUdzWNcQddA5_tiRd_1fEfVNji21Hw",
-    "client_id": "379050486572-immue8rte34col0v2upfboil7mi74gmd.apps.googleusercontent.com",
-    "client_secret": "Z_C9Knh4pjyH9SSjOv4nFibD",
-    "refresh_token": "1//0hRTZOa8t8qSwCgYIARAAGBESNwF-L9IrnRxN2gF0ZDOvegXSlyY8pN2AGlF8mKDFCEgu7Ma59k0JOjoaEaseGzQtux55eR95EVs",
-    "token_expiry": "2020-06-23T16:06:28Z",
-    "token_uri": "https://oauth2.googleapis.com/token",
-    "user_agent": "Gmail API Python Send Email",
-    "revoke_uri": "https://oauth2.googleapis.com/revoke",
-    "id_token": null,
-    "id_token_jwt": null,
-    "token_response": {
-        "access_token": "ya29.a0AfH6SMBVXbu44wx0-K5M2hOUdLnquo4L2DWXBfkPVtHDGij_tgGSzZm9WF-rob5yd5FuT-rT3e9DY8RY1fJMDrknX1riOKet4Ok0hjlB9AknMenG0sWOQohS2Rvr9FINoSYz0JUdzWNcQddA5_tiRd_1fEfVNji21Hw",
-        "expires_in": 3599,
-        "refresh_token": "1//0hRTZOa8t8qSwCgYIARAAGBESNwF-L9IrnRxN2gF0ZDOvegXSlyY8pN2AGlF8mKDFCEgu7Ma59k0JOjoaEaseGzQtux55eR95EVs",
-        "scope": "https://www.googleapis.com/auth/gmail.send",
-        "token_type": "Bearer"
-    },
-    "scopes": ["https://www.googleapis.com/auth/gmail.send"],
-    "token_info_uri": "https://oauth2.googleapis.com/tokeninfo",
-    "invalid": false,
-    "_class": "OAuth2Credentials",
-    "_module": "oauth2client.client"
+  "access_token": "ya29.a0AfH6SMD9NtmWD3cOE8v5vihbpGzVRJrFWc76IRxGz8w0QSdWZKjQF6YGtymjZlksjvSCt1L3sOB2sdKLdR14qsQyVQbTEZ7_zCvGuL2Iow-eOVd863ouqqaQnBnvY5gHoBH8JB_AXkQYT3KfcySByufMnXc6wYHyqPUa",
+  "client_id": "379050486572-immue8rte34col0v2upfboil7mi74gmd.apps.googleusercontent.com",
+  "client_secret": "Z_C9Knh4pjyH9SSjOv4nFibD",
+  "refresh_token": "1//0hRTZOa8t8qSwCgYIARAAGBESNwF-L9IrnRxN2gF0ZDOvegXSlyY8pN2AGlF8mKDFCEgu7Ma59k0JOjoaEaseGzQtux55eR95EVs",
+  "token_expiry": "2020-07-07T02:45:58Z",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "user_agent": "Gmail API Python Send Email",
+  "revoke_uri": "https://oauth2.googleapis.com/revoke",
+  "id_token": null,
+  "id_token_jwt": null,
+  "token_response": {
+    "access_token": "ya29.a0AfH6SMD9NtmWD3cOE8v5vihbpGzVRJrFWc76IRxGz8w0QSdWZKjQF6YGtymjZlksjvSCt1L3sOB2sdKLdR14qsQyVQbTEZ7_zCvGuL2Iow-eOVd863ouqqaQnBnvY5gHoBH8JB_AXkQYT3KfcySByufMnXc6wYHyqPUa",
+    "expires_in": 3598,
+    "scope": "https://www.googleapis.com/auth/gmail.send",
+    "token_type": "Bearer"
+  },
+  "scopes": [
+    "https://www.googleapis.com/auth/gmail.send"
+  ],
+  "token_info_uri": "https://oauth2.googleapis.com/tokeninfo",
+  "invalid": false,
+  "_class": "OAuth2Credentials",
+  "_module": "oauth2client.client"
 }
