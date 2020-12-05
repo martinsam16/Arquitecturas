@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+  postgres-server:
+    image: "postgres:10-alpine"
+    container_name: "postgres-server"
+    environment:
+     - POSTGRES_USER=superdevuser
+     - POSTGRES_PASSWORD=P@ssword1
+     - POSTGRES_DB=superdevdb
+    ports:
+      - "5432:5432"
+    networks:
+      microservice_network:
+
+  eureka-server:
+    build: ./superdev-eureka-server-part2
+    container_name: "eureka"
+    depends_on:
+      - "postgres-server"
+    ports:
+      - "8761:8761"
+    networks:
+      microservice_network:
+  
+  superdev-crm-customer:
+    build: ./superdev-crm-customer-part2
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "eureka-server"
+    networks:
+      microservice_network:
+
+  superdev-zuul:
+    build: ./superdev-zuul-part2
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - "eureka-server"
+      - "superdev-crm-customer"
+    networks:
+      microservice_network:
+
+networks:
+  microservice_network:
+    ipam:
+      driver: default
