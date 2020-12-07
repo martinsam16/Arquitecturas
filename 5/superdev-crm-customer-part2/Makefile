@@ -4,3 +4,10 @@ build:
 	mvn clean package -DskipTests=true
 	docker build . -t superdev-crm-customer
 
+kubernetes:
+	kubectl create -f specs/postgres.yml
+	kubectl create configmap hostname-config --from-literal=postgres_host=$(kubectl get svc postgres -o jsonpath="{.spec.clusterIP}")
+	kubectl create -f specs/spring-boot-app.yml
+
+scale:
+	kubectl scale deployment spring-boot-postgres --replicas=3
