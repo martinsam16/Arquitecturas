@@ -30,3 +30,13 @@ spec:
                 name: hostname-config
                 key: postgres_host
         image: superdev-crm-customer
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "300Mi"
+            cpu: "500m"
+
+
+
