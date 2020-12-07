@@ -7,7 +7,7 @@ build:
 kubernetes:
 	kubectl create -f specs/postgres.yml
 	kubectl create configmap hostname-config --from-literal=postgres_host=$(kubectl get svc postgres -o jsonpath="{.spec.clusterIP}")
-	kubectl create -f specs/spring-boot-app.yml
+	kubectl create -f specs/crm-customer.yml
 
 scale:
-	kubectl scale deployment spring-boot-postgres --replicas=3
+	kubectl scale deployment crm-customer --replicas=3
