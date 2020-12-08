@@ -9,6 +9,7 @@ kubernetes:
 	kubectl create -f specs/postgres.yml
 	kubectl create configmap hostname-config --from-literal=postgres_host=$(kubectl get svc postgres -o jsonpath="{.spec.clusterIP}")
 	kubectl create -f specs/crm-customer.yml
+	kubectl create -f specs/ingress.yml
 
 scale:
 	kubectl scale deployment crm-customer --replicas=3
