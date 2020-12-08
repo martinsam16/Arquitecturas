@@ -36,7 +36,7 @@ spec:
           persistentVolumeClaim:
             claimName: postgres-pv-claim
       containers:
-        - image: postgres
+        - image: postgres:10-alpine
           name: postgres
           env:
             - name: POSTGRES_USER
