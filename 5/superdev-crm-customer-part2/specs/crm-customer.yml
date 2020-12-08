@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: crm-customer
+  name: customer
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: crm-customer
+      app: customer
   template:
     metadata:
-      name: crm-customer
+      name: customer
       labels:
-        app: crm-customer
+        app: customer
     spec:
       containers:
-      - name: crm-customer
+      - name: customer
         image: malditoidealismo/crm-customer
         imagePullPolicy: IfNotPresent
         ports:
@@ -45,11 +45,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: customer-service
+  name: customer
 spec:
   type: NodePort
   selector:
-    app: crm-customer
+    app: customer
   ports:
     - port: 8080
       protocol: TCP
