@@ -1,10 +1,10 @@
-package za.co.superdev.crm;
+package com.vallegrande.sadeb.crm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SuperdevCrmCustomerApplicationTests {
+class CrmCustomerApplicationTests {
 
 	@Test
 	void contextLoads() {

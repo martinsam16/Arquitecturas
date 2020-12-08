@@ -19,8 +19,16 @@ spec:
         image: malditoidealismo/crm-customer
         imagePullPolicy: IfNotPresent
         ports:
-          - containerPort: 8080
+          - name: liveness-port
+            containerPort: 8080
+            hostPort: 8080
             protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: liveness-port
+          initialDelaySeconds: 35
+          periodSeconds: 3
         env:
           - name: POSTGRES_HOST
             value: postgres.default.svc.cluster.local

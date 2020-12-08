@@ -8,10 +8,10 @@
 		<version>2.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>za.co.superdev.crm</groupId>
-	<artifactId>superdev-crm-customer</artifactId>
+	<groupId>com.vallegrande.sadeb.crm</groupId>
+	<artifactId>crm-customer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>superdev-crm-customer</name>
+	<name>crm-customer</name>
 	<description>Sample project to keep records of customers</description>
 
 	<properties>

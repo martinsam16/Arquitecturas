@@ -1,10 +1,9 @@
-package za.co.superdev.crm.service;
+package com.vallegrande.sadeb.crm.service;
 
+import com.vallegrande.sadeb.crm.model.Customer;
+import com.vallegrande.sadeb.crm.repo.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import za.co.superdev.crm.model.Customer;
-import za.co.superdev.crm.repo.CustomerRepository;
 
 import java.util.Date;
 import java.util.List;

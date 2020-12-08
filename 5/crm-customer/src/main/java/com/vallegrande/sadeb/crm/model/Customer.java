@@ -1,4 +1,4 @@
-package za.co.superdev.crm.model;
+package com.vallegrande.sadeb.crm.model;
 
 import java.util.Date;
 
