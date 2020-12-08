@@ -1,8 +1,9 @@
-PHONY: build
+PHONY: build-push kubernetes scale
 
-build:
+build-push:
 	mvn clean package -DskipTests=true
-	docker build . -t superdev-crm-customer
+	docker build . -t malditoidealismo/crm-customer
+	docker push malditoidealismo/crm-customer
 
 kubernetes:
 	kubectl create -f specs/postgres.yml

@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: spring-boot-postgres
+  name: crm-customer
   namespace: default
 spec:
   replicas: 1
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: crm-customer
-        image: superdev-crm-customer
+        image: malditoidealismo/crm-customer
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 8080
