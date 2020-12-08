@@ -47,10 +47,10 @@ kind: Service
 metadata:
   name: customer
 spec:
-  type: NodePort
+  ports:
+  - nodePort: 31000
+    port: 80
+    targetPort: 8080
   selector:
     app: customer
-  ports:
-    - port: 8080
-      protocol: TCP
-      targetPort: 8080
+  type: NodePort
