@@ -23,7 +23,7 @@ spec:
             protocol: TCP
         env:
           - name: POSTGRES_HOST
-              value: postgres.default.svc.cluster.local
+            value: postgres.default.svc.cluster.local
           - name: POSTGRES_USER
             valueFrom:
               configMapKeyRef:
