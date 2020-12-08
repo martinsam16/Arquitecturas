@@ -34,11 +34,6 @@ spec:
               configMapKeyRef:
                 name: postgres-config
                 key: postgres_password
-          - name: POSTGRES_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: hostname-config
-                key: postgres_host
         resources:
           requests:
             memory: "256Mi"
