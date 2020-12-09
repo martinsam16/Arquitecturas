@@ -73,3 +73,9 @@ settings.gradle
 
 */.settings/*
 *.bpmn2d
+
+/terraform/.terraform/
+k2tf.exe
+/terraform/.terraform.tfstate.lock.info
+/terraform/terraform.tfstate
+/terraform/terraform.tfstate.backup
